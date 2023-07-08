@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da velha</title>
+    <style>
+        .botoes {
+            position:relative;
+            top: 400px;
+            left: 50%;
+            transform: translate(-150%,-150%);
+            width: 200px;
+            height: 200px;
+            font-size: 500%;
+            border: 0px;
+            background-color: rgba(240, 248, 255, 0);
+            transition: ease-in 1s;
+        }
+        .ganhador {
+            opacity: 0%;
+            position: absolute;
+            top: 90px;
+            left: 750px;
+            font-size: 150%;
+            width: 300px;
+        }
+        #jogan {
+            opacity: 0;
+            width: 220px;
+            height: 100px;
+            position:absolute;
+            top: 400px;
+            left: 1300px;
+            border-radius: 90px;
+        }
+        #frame {
+            position: absolute;
+            top: 25px;
+            left: 580px;
+            font-size: 2000%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #frame2 {
+            position: absolute;
+            top: 200px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #frame3 {
+            position: absolute;
+            left: 70px;
+            top: 70px;
+            transform: rotate(90deg);
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #frame4 {
+            position: absolute;
+            top: -205px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="frame">____</h1>
+    <div id="frame2">____</h1>
+    <div id="frame3">____</h1>
+    <div id="frame4">____</h1>
+    </div></div></div></div>
+    <h1 id="turnot">Turno: <strong id="jogador">Jogador X</strong></h1>
+    <button id="square1" class="botoes" onclick="jogar(this)">&nbsp;</button>
+    <button id="square2" class="botoes" onclick="jogar(this)">&nbsp;</button>
+    <button id="square3" class="botoes" onclick="jogar(this)">&nbsp;</button>
+    <br />
+    <button id="square4" class="botoes" onclick="jogar(this)">&nbsp;</button>
+    <button id="square5" class="botoes" onclick="jogar(this)">&nbsp;</button>
+    <button id="square6" class="botoes" onclick="jogar(this)">&nbsp;</button>
+    <br />
+    <button id="square7" class="botoes" onclick="jogar(this)">&nbsp;</button>
+    <button id="square8" class="botoes" onclick="jogar(this)">&nbsp;</button>
+    <button id="square9" class="botoes" onclick="jogar(this)">&nbsp;</button>
+    <div id="ganhador" class="ganhador">O Ganhador foi: </div>
+    <button id="jogan" onclick="window.location.reload()">Jogar Novamente</button>
+    <script>
+        let sinal = '✘';
+        let jogador = "Jogador X";
+        let vez = document.getElementById("jogador");
+        const quadrado1 = document.getElementById("square1");
+        const quadrado2 = document.getElementById("square2");
+        const quadrado3 = document.getElementById("square3");
+        const quadrado4 = document.getElementById("square4");
+        const quadrado5 = document.getElementById("square5");
+        const quadrado6 = document.getElementById("square6");
+        const quadrado7 = document.getElementById("square7");
+        const quadrado8 = document.getElementById("square8");
+        const quadrado9 = document.getElementById("square9");
+        let vencedor = '';
+        let jogoganho = false;
+        const quantidadej = 9
+        let jogadaa = 0;
+        const textov = document.getElementById("ganhador");
+        const jogarn = document.getElementById("jogan");
+
+        jogarn.disabled = true;
+        const turnot = document.getElementById("turnot");
+        function jogar(clicado) {
+            if (jogador == "Jogador X") {
+                sinal = "✘";
+                jogador = "Jogador O"
+                jogadaa ++;
+            } else if (jogador == "Jogador O") {
+                sinal = "ø";
+                jogador = "Jogador X"
+                jogadaa ++;
+            }
+        clicado.innerHTML = sinal;
+        if (clicado.innerHTML == "✘") {
+            clicado.disabled = true
+        }
+        if (clicado.innerHTML == "ø") {
+            clicado.disabled = true
+        }
+        vez.innerHTML = jogador;
+        if(quadrado1.innerHTML == "✘" && quadrado2.innerHTML == "✘" && quadrado3.innerHTML == "✘") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador X";
+            jogoganho = true;
+        }
+        if(quadrado1.innerHTML == "✘" && quadrado4.innerHTML == "✘" && quadrado7.innerHTML == "✘") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador X";
+            jogoganho = true;
+        }
+        if(quadrado2.innerHTML == "✘" && quadrado5.innerHTML == "✘" && quadrado8.innerHTML == "✘") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador X";
+            jogoganho = true;
+        }
+        if(quadrado3.innerHTML == "✘" && quadrado6.innerHTML == "✘" && quadrado9.innerHTML == "✘") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador X";
+            jogoganho = true;
+        }
+        if(quadrado4.innerHTML == "✘" && quadrado5.innerHTML == "✘" && quadrado6.innerHTML == "✘") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador X";
+            jogoganho = true;
+        }
+        if(quadrado7.innerHTML == "✘" && quadrado8.innerHTML == "✘" && quadrado9.innerHTML == "✘") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador X";
+            jogoganho = true;
+        }
+        if(quadrado1.innerHTML == "✘" && quadrado5.innerHTML == "✘" && quadrado9.innerHTML == "✘") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador X";
+            jogoganho = true;
+        }
+        if(quadrado3.innerHTML == "✘" && quadrado5.innerHTML == "✘" && quadrado7.innerHTML == "✘") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador X";
+            jogoganho = true;
+        }
+
+        if(quadrado1.innerHTML == "ø" && quadrado2.innerHTML == "ø" && quadrado3.innerHTML == "ø") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador O";
+            jogoganho = true;
+        }
+        if(quadrado1.innerHTML == "ø" && quadrado4.innerHTML == "ø" && quadrado7.innerHTML == "ø") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador O";
+            jogoganho = true;
+        }
+        if(quadrado2.innerHTML == "ø" && quadrado5.innerHTML == "ø" && quadrado8.innerHTML == "ø") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador O";
+            jogoganho = true;
+        }
+        if(quadrado3.innerHTML == "ø" && quadrado6.innerHTML == "ø" && quadrado9.innerHTML == "ø") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador O";
+            jogoganho = true;
+        }
+        if(quadrado4.innerHTML == "ø" && quadrado5.innerHTML == "ø" && quadrado6.innerHTML == "ø") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador O";
+            jogoganho = true;
+        }
+        if(quadrado7.innerHTML == "ø" && quadrado8.innerHTML == "ø" && quadrado9.innerHTML == "ø") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador O";
+            jogoganho = true;
+        }
+        if(quadrado1.innerHTML == "ø" && quadrado5.innerHTML == "ø" && quadrado9.innerHTML == "ø") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador O";
+            jogoganho = true;
+        }
+        if(quadrado3.innerHTML == "ø" && quadrado5.innerHTML == "ø" && quadrado7.innerHTML == "ø") {
+            quadrado1.disabled = true;
+            quadrado2.disabled = true;
+            quadrado3.disabled = true;
+            quadrado4.disabled = true;
+            quadrado5.disabled = true;
+            quadrado6.disabled = true;
+            quadrado7.disabled = true;
+            quadrado8.disabled = true;
+            quadrado9.disabled = true;
+            vencedor = "Jogador O";
+            jogoganho = true;
+        }
+
+        if (jogadaa >= 9 && jogoganho == false) {
+            debugger;
+            jogoganho = true;
+            vencedor = "Velha";
+        }
+
+        if (jogoganho == true) {
+            jogarn.style.opacity = 100;
+            jogarn.disabled = false;
+            textov.style.opacity = 100;
+            turnot.style.opacity = 0;
+            vez.style.opacity = 0;
+            textov.innerHTML = "O Ganhador foi: <strong>" + vencedor + "</strong>";
+        }
+        }
+    </script>
+</body>
+</html>
